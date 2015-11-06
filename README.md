@@ -1,4 +1,4 @@
-# Crawler
+# Crawler [![Build Status](https://travis-ci.org/hubb/crawler.svg?branch=master)](https://travis-ci.org/hubb/crawler)
 
 A simple web page crawler, given a URL, will output a site map showing the static assests for each page.
 It should not visit external links.
