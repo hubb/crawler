@@ -41,8 +41,7 @@ describe Crawler::TestProxy do
     context 'when unable to read from remote source' do
       it 'uses a friendly error message as html' do
         expect(proxy.html).to include(
-          'Unable to fetch http://foo.lan, reason getaddrinfo: nodename nor ' \
-          'servname provided, or not known')
+          'Unable to fetch http://foo.lan, reason getaddrinfo:')
       end
     end
   end

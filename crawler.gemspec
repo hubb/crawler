@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/hubb/crawler"
 
   s.add_development_dependency 'bundler', '~> 1.10'
-  s.add_development_dependency 'rspec', '~> 3.3', '>= 3.3.0'
 
   s.files        = `git ls-files`.split("\n")
   s.test_files   = `git ls-files -- spec/*/*_spec*`.split("\n")
