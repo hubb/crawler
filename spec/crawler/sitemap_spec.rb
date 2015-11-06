@@ -1,14 +1,17 @@
 require 'spec_helper'
-require 'go_crawler/sitemap'
-require 'go_crawler/page'
+require 'crawler/sitemap'
+require 'crawler/page'
 
-describe GoCrawler::Sitemap do
-  let(:root) { GoCrawler::Page.new('http://foo.bar') }
+describe Crawler::Sitemap do
+  let(:root) { Crawler::Page.new('http://foo.bar') }
   subject(:sitemap) { described_class.new(root) }
 
   it { expect(sitemap).to respond_to(:root) }
+  it { expect(sitemap).to respond_to(:nodes) }
+  it { expect(sitemap).to respond_to(:add) }
   it { expect(sitemap).not_to respond_to(:root=) }
   it { expect(sitemap).not_to respond_to(:links) }
+  it { expect(sitemap).to be_a(Enumerable) }
 
   describe 'initialize' do
     it { expect(sitemap).to be_a(described_class) }
@@ -23,14 +26,16 @@ describe GoCrawler::Sitemap do
   end
 
   describe 'root' do
-    it { expect(sitemap.root).to be_a(GoCrawler::Page) }
+    it { expect(sitemap.root).to be_a(Crawler::Page) }
   end
 
   describe 'adding nodes' do
-    let(:page) { GoCrawler::Page.new('http://foo.bar/baz') }
-    before     { sitemap.add(page) }
+    let(:page) { Crawler::Page.new('http://foo.bar/baz') }
 
-    it { expect(sitemap).to be_a(Enumerable) }
-    it { expect(sitemap.each.to_a).to include(page) }
+    it 'push the Page to the nodes' do
+      expect { sitemap.add(page) }
+        .to change { sitemap.nodes }
+        .to([root, page])
+    end
   end
 end

@@ -1,7 +1,7 @@
 require 'uri'
-require 'go_crawler/remote_html_document'
+require 'crawler/remote_html_document'
 
-module GoCrawler
+module Crawler
   class Page
     ROOT_PATH  = '/'
     STYLESHEET = 'stylesheet'
@@ -14,11 +14,12 @@ module GoCrawler
     end
 
     def each_link
+      return enum_for(:each_link) unless block_given?
+
       links.map do |link|
         absolute_url = URI.parse(link).relative? ? url + link : link
 
-        yield absolute_url.to_s if block_given?
-        absolute_url.to_s
+        yield absolute_url.to_s
       end
     end
 

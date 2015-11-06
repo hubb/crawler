@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'go_crawler/remote_html_document'
+require 'crawler/remote_html_document'
 
-module GoCrawler
+module Crawler
   class TestProxy
-    include GoCrawler::RemoteHTMLDocument
+    include Crawler::RemoteHTMLDocument
 
     attr_reader :url
     def initialize(url)
@@ -12,7 +12,7 @@ module GoCrawler
   end
 end
 
-describe GoCrawler::TestProxy do
+describe Crawler::TestProxy do
   subject(:proxy) { described_class.new('http://foo.lan') }
 
   it { expect(proxy).to respond_to(:html) }
@@ -22,9 +22,7 @@ describe GoCrawler::TestProxy do
     let(:html) { File.read(File.expand_path('../../support/index.html', __FILE__)) }
     
     context 'when using the default html_parser' do
-      before do
-        allow(proxy).to receive(:html).and_return(html)
-      end
+      before { allow(proxy).to receive(:html).and_return(html) }
 
       it { expect(proxy.document).to be_a(Nokogiri::HTML::Document) }
     end

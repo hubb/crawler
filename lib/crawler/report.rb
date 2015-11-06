@@ -1,4 +1,4 @@
-module GoCrawler
+module Crawler
   class Report
     def initialize(sitemap)
       @sitemap = sitemap

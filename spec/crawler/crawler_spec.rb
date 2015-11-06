@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'go_crawler/crawler'
+require 'crawler/crawler'
 
-describe GoCrawler::Crawler do
+describe Crawler::Crawler do
   subject(:crawler) { described_class.new('https://www.gocardless.com') }
   it { expect(described_class).to respond_to(:map!) }
   it { expect(crawler).to respond_to(:sitemap) }
@@ -10,7 +10,7 @@ describe GoCrawler::Crawler do
   
   describe 'map!' do
     it { expect(described_class.map!('https://www.gocardless.com'))
-        .to be_a(GoCrawler::Sitemap) }
+        .to be_a(Crawler::Sitemap) }
   end
 
   describe 'url' do
@@ -19,12 +19,12 @@ describe GoCrawler::Crawler do
   end
 
   describe 'root' do
-    it { expect(crawler.root).to be_a(GoCrawler::Page) }
+    it { expect(crawler.root).to be_a(Crawler::Page) }
     it { expect(crawler.root).to respond_to(:each_link) }
   end
 
   describe 'sitemap' do
-    it { expect(crawler.sitemap).to be_a(GoCrawler::Sitemap) }
+    it { expect(crawler.sitemap).to be_a(Crawler::Sitemap) }
     it { expect(crawler.sitemap).to respond_to(:add) }
   end
 end

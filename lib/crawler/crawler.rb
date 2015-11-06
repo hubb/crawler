@@ -1,8 +1,8 @@
 require 'open-uri'
-require 'go_crawler/page'
-require 'go_crawler/sitemap'
+require 'crawler/page'
+require 'crawler/sitemap'
 
-module GoCrawler
+module Crawler
   class Crawler
     attr_reader :url, :root
 

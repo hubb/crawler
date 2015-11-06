@@ -1,12 +1,11 @@
 require 'open-uri'
 require 'nokogiri'
 
-module GoCrawler
+module Crawler
   module RemoteHTMLDocument
     attr_writer :html_parser
 
     def included(base)
-
       unless base.respond_to?(:url)
         fail 'Your base model should expose a #url method'
       end
@@ -18,7 +17,7 @@ module GoCrawler
 
     def html
       open(url,
-        "User-Agent" => "GoCrawler - GoCardless coding exercise bot. Ruby/#{RUBY_VERSION}",
+        "User-Agent" => "Crawler - GoCardless coding exercise bot. Ruby/#{RUBY_VERSION}",
         "From"       => "thibault.gautriaud@gmail.com",
         "Referer"    => "https://gocardless.com/about/jobs/software-engineer/"
       ).read

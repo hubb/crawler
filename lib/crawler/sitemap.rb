@@ -1,25 +1,18 @@
 require 'forwardable'
 
-module GoCrawler
+module Crawler
   class Sitemap
     include Enumerable
     extend  Forwardable
-    def_delegators :nodes, :each
+    def_delegators :nodes, :each, :push
+    alias :add :push
 
-    attr_reader :root
+    attr_reader :root, :nodes
 
     def initialize(root)
       @root  = root
       @nodes = [root]
       yield self if block_given?
-    end
-
-    def add(page)
-      @nodes << page
-    end
-
-    def nodes
-      @nodes
     end
   end
 end
