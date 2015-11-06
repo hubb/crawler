@@ -3,7 +3,7 @@ require 'crawler/remote_html_document'
 
 module Crawler
   class TestProxy
-    include Crawler::RemoteHTMLDocument
+    include RemoteHTMLDocument
 
     attr_reader :url
     def initialize(url)

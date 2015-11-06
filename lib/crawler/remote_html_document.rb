@@ -21,7 +21,7 @@ module Crawler
         "From"       => "thibault.gautriaud@gmail.com",
         "Referer"    => "https://gocardless.com/about/jobs/software-engineer/"
       ).read
-    rescue SocketError => e
+    rescue SocketError, OpenURI::HTTPError => e
       "<html><body>Unable to fetch #{ url }, reason #{ e.message }}</body></html>"
     end
 
